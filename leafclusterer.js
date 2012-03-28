@@ -637,6 +637,7 @@ ClusterMarker_ = L.Class.extend({
     var cluster = this;
 
     if (this.container_.addEventListener) {
+<<<<<<< HEAD
       this.container_.addEventListener("click",
         function() {
           cluster.onClick_(cluster);
@@ -645,6 +646,19 @@ ClusterMarker_ = L.Class.extend({
       this.container_.attachEvent("onclick",
         function() {
           cluster.onClick_(cluster);
+=======
+      this.container_.addEventListener(
+        "click",
+        function() {
+        cluster.onClick_(cluster);
+        },      
+        false); 
+    } else if (this.container_.attachEvent) {
+      this.container_.attachEvent(
+        "onclick",
+        function() {
+        cluster.onClick_(cluster);
+>>>>>>> 3c91f06... 	modified:   leafclusterer.js
         });     
     }   
     map.on('viewreset', this.redraw, this);
