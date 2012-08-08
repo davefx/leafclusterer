@@ -652,20 +652,8 @@ ClusterMarker_ = L.Class.extend({
   onAdd: function(map) {
     this.map_ = map;
     this.container_ = L.DomUtil.create('div', 'cluster-marker-container');
-    map.getPanes().overlayPane.appendChild(this.container_);
-    var cluster = this;
-
-    if (this.container_.addEventListener) {
-      this.container_.addEventListener("click",
-        function() {
-          cluster.onClick_(cluster);
-        }, false); 
-    } else if (this.container_.attachEvent) {
-      this.container_.attachEvent("onclick",
-        function() {
-          cluster.onClick_(cluster);
-        });     
-    }   
+    
+    map.getPanes().clusterPane.appendChild(this.container_);
     map.on('viewreset', this.redraw, this);
     this.redraw();
   },
