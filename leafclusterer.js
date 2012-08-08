@@ -654,14 +654,7 @@ L.Marker.ClusterMarker = L.Class.extend({
   onAdd: function(map) {
     this._map = map;
     this._container = L.DomUtil.create('div', 'cluster-marker-container');
-    map.getPanes().overlayPane.appendChild(this._container);
-    var me = this;
-    
-    if (this._container.addEventListener) {
-      this._container.addEventListener("click", function() { me._onClick(); }, me); 
-    } else if (this._container.attachEvent) {
-      this._container.attachEvent("onclick", function() { me._onClick(); }, me);     
-    }   
+    map.getPanes().clusterPane.appendChild(this._container);	
     map.on('viewreset', this.redraw, this);
     this.redraw();
   },
@@ -682,7 +675,7 @@ L.Marker.ClusterMarker = L.Class.extend({
   },
 
   onRemove: function(map) {
-    map.getPanes().overlayPane.removeChild(this._container);
+    map.getPanes().clusterPane.removeChild(this._container);
     map.off('viewreset', this.redraw, this);
   },
 
@@ -758,11 +751,18 @@ L.Marker.ClusterMarker = L.Class.extend({
     }
     var txtColor = this.textColor_ ? this.textColor_ : 'black';
 
-    div.style.cssText = mstyle + 'cursor:pointer;top:' + pos.y + "px;left:" +
-    pos.x + "px;color:" + txtColor +  ";position:absolute;font-size:11px;" +
-    'font-family:Arial,sans-serif;font-weight:bold';
+    div.style.cssText = mstyle + 'cursor:pointer;" +
+		"color:" + txtColor + ";font-size:11px;" +
+		top:' + pos.y + "px;left:" +
+		'font-family:Arial,sans-serif;font-weight:bold';
     div.innerHTML = this._count;
 
+	// add a listener and some extra styles
+	var cluster = this;
+	div.style.zIndex = pos.y;
+	div.className += " leaflet-clickable";
+	
+	
     return div;
   }
 });
