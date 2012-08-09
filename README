@@ -7,7 +7,7 @@ var pos = new L.LatLng(lat, lng);
 var zoom = 4;
 map.setView(pos, zoom);
 
-var clusterer = new LeafClusterer(map);
+var clusterer = new L.Marker.Clusterer(map);
 
 var lat = ...;
 var lng = ...;

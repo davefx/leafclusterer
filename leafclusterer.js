@@ -751,9 +751,9 @@ L.Marker.ClusterMarker = L.Class.extend({
     }
     var txtColor = this.textColor_ ? this.textColor_ : 'black';
 
-    div.style.cssText = mstyle + 'cursor:pointer;" +
+    div.style.cssText = mstyle + "cursor:pointer;" +
 		"color:" + txtColor + ";font-size:11px;" +
-		top:' + pos.y + "px;left:" +
+		'top:' + pos.y + "px;left:" +
 		'font-family:Arial,sans-serif;font-weight:bold';
     div.innerHTML = this._count;
 
